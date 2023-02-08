@@ -63,8 +63,7 @@ We analyzed the data to determine the rate of subscribers per category within ea
 
 We used a loop function to calculate the percentage of subscribers from prospects contacted. We extracted a data set for each feature and the subscribed column. We used the size() method to count the number of instances while applying a pivot function to create a column for ‘yes’ and ‘no’ to calculate the percentage rate per each category (e.g. university graduates, high school graduates) within a feature (e.g. education, marital). In the second part of the loop function, we plotted the results for each feature. We will touch upon a few graphs we generated.
 
-featured_image: assets/images/posts/2018/age_graph.jpg
-
+`![Image description](assets/images/posts/2018/age_graph.jpg)`
 
 
 Seniors' (ages 65 to 98) subscription rate is three times as much as Older Adults (ages 56–65) and Young adults (ages 17–35). Middle Aged Adults (ages 36–65) have the lowest rate of subscription at 8.65%.
