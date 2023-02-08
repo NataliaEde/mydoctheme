@@ -1,11 +1,10 @@
 ---
 layout: post
 title:  "Classification Problem of Bank’s Telemarketing Campaign"
-tags: [ Tips ]
 featured_image_thumbnail:
 featured_image: assets/images/posts/2018/project_3.jpg
 ---
-** Introduction **
+## Introduction 
 
 Retail banks collect term deposits as part of their core business investment products. Banks generate a profit by lending funds held in deposit accounts for a higher rate than it pays the customer. Therefore, banks emphasize their marketing efforts to attract customers to deposit funds.
 
@@ -64,7 +63,7 @@ We analyzed the data to determine the rate of subscribers per category within ea
 
 We used a loop function to calculate the percentage of subscribers from prospects contacted. We extracted a data set for each feature and the subscribed column. We used the size() method to count the number of instances while applying a pivot function to create a column for ‘yes’ and ‘no’ to calculate the percentage rate per each category (e.g. university graduates, high school graduates) within a feature (e.g. education, marital). In the second part of the loop function, we plotted the results for each feature. We will touch upon a few graphs we generated.
 
-image: assets/images/posts/2018/age_graph.jpg
+featured_image: assets/images/posts/2018/age_graph.jpg
 
 
 
