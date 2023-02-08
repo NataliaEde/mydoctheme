@@ -63,51 +63,56 @@ We analyzed the data to determine the rate of subscribers per category within ea
 
 We used a loop function to calculate the percentage of subscribers from prospects contacted. We extracted a data set for each feature and the subscribed column. We used the size() method to count the number of instances while applying a pivot function to create a column for ‘yes’ and ‘no’ to calculate the percentage rate per each category (e.g. university graduates, high school graduates) within a feature (e.g. education, marital). In the second part of the loop function, we plotted the results for each feature. We will touch upon a few graphs we generated.
 
-`![Image](/assets/images/posts/2018/age_graph.jpg)`
+#### Age
 
+![image](https://user-images.githubusercontent.com/44559346/206238694-45f84fda-487f-46a0-87c3-75c3a904743f.png)
 
-Seniors' (ages 65 to 98) subscription rate is three times as much as Older Adults (ages 56–65) and Young adults (ages 17–35). Middle Aged Adults (ages 36–65) have the lowest rate of subscription at 8.65%.
-Occupation
+#### Occupation
 
+![image](https://user-images.githubusercontent.com/44559346/206240767-fe3dfcb6-788e-41bc-ba49-4070988b5267.png)
 
+#### Preparing to Model the Data 
 
-
-
-Students and retired individuals were twice or three times more likely to subscribe than any other profession. Unemployed and administration professionals were the next highest group, ranging from 11.3% to 13% rate of subscribers, whereas the rest of the groups were less than 11.31%.
-Method of Communication
-The rate of subscription for people contacted by cellular phone is 10% higher than for those contacted on a regular phone.
-Building Predictive Models
-After cleaning the data and exploring different trends, I prepared the data to run the following classified models for our prediction: Logistic Regression, Decision Tree, Random Forest, and XGBoost.
-In our data, there are two possible outcomes: whether an individual subscribes to a term deposit or not. Given that our data is unbalanced, where only 11% of the individuals subscribed and not even equality represented with the group that unsubscribed, it can lead to inaccurate results when we employ a predictive model. In such scenarios of class imbalance, it is recommended to use Synthetic Minority Over - Sampling Technique. We implemented SMOTE- Nominal and Continuous ('SMOTE-NC') on our training data which contains categorical and numerical data.
-Score and Pipeline Function
-We built a function that captures the classified models, trains them, and produces the scoring results (Accuracy, Precious Recall, and F1_Score). We added an "if statement" with a display element to have the option to not display when unnecessary.
 We used a pipeline to streamline several steps that are required to pass through the data before implementing the predictive classified model. The pipeline was also helpful when we split the data into training and testing because we did not want the information from training data to be leaked into the unseen testing data.
-We inserted the pipeline as part of a function so that it can loop around when we employed the various classified models.
-Our data contains numerical and categorical variables. We separated the data sets into numerical and categorical data, since the StandardScaler() feature is only needed for the numerical data, and the OntHotEncoder() function is only needed to convert the categorical subset to a numerical form.
-When the data passed through the pipeline, it went through the first step of StandardSclare() and OneHotEncoder(). The adjusted data fit the model/classifier and ultimately produced predictive values for the testing and training data and reverted back to the model scoring.
-In this project, if the model predicts falsely that a prospect will subscribe when in fact, they are unlikely to subscribe to the term deposit campaign, then it is not worth the cost of pursuing leads that offer no potential for a positive return on investment.
-Similarly, if a prospect is falsely labeled as a customer who is not likely to subscribe when in fact, they are likely to subscribe, then it is a missed opportunity for the bank to gain a client that might deposit funds.
-Therefore, it is important to focus on the f1 score, which takes into consideration both false predictions.
-We hyper-tuned Random Forest using GridSearch:
-param_grid_rf = {
-'model__n_estimators': [100, 300, 600, 900, 1200],
-'model__max_features': [2, 4,6,8,10,12,14],
-'model__max_depth' : [50, 100, 200],
-'model__criterion' :['gini', 'entropy']
-}
-grid_clf_rf = GridSearchCV(pipeline_rf, param_grid_rf, scoring='accuracy',
-cv=3, n_jobs=-1,verbose=2)
-GridSEarchCV suggested the following criteria, which produced the following results:
-{'model__criterion': 'gini',
-'model__max_depth': 200,
-'model__max_features': 14,
-'model__n_estimators': 900}
-Training_Accuracy: 0.9960036496350365
-Test_Accuracy: 0.8729356906936079
-Precision: 0.8685113598591178
-Recall: 0.8729356906936079
-F1_Score: 0.8706234452833183
-The model generated the following features of importance:
+
+We inserted the pipeline as part of a function so that it can loop around when we employed the various classified models. 
+
+![image](https://user-images.githubusercontent.com/44559346/206961932-b77f80bc-4e42-4494-a25c-20e5b1c35ca4.png)
+
+#### Final Model with Hypertuning -  Random Forest  
+ 
+ GridSEarchCV suggested the following criteria, which produced the following results:
+
+ {'model__criterion': 'gini', <br />
+'model__max_depth': 200, <br />
+ 'model__max_features': 14, <br />
+ 'model__n_estimators': 900} <br />
+
+* Training_Accuracy: 0.99 <br />
+* Test_Accuracy: 0.87<br />
+* Precision: 0.9876<br />
+* Recall: 0.87<br />
+* F1_Score: 0.87<br />
+
+
+
+### Conclusions:
+
+In this project,we implemented data analysis and predictive classified models to predict term deposit subscriptions at a Portuguese bank institution. With the F1 score of 87% using Random Forest Classifier, the following business recommendations are:
+
+Pay close attention to socioeconomic data:
+* 3 Month Euribor rate - The Euribor rate is based on the average interest rates at which Eurozone banks lend funds to other banks. Ramp up the campaign when rates are high. A prospect is more likely to invest in a term deposit knowing that they will receive a high interest rate.
+* Consumer Confidence Index - Individuals are more likely to invest if their financial situation is good and if the country’s outlook is optimistic. 
+
+Target telemarketing calls toward select the individuals who belong to a specific age group and occupation. Seniors, and Students, and Retired Individuals are more likely to subscribe to a term deposit. 
+
+Conduct the campaign during specific months. March, September, and October have been shown to have a higher rate of subscriptions.  
+
+#### Repository Structure
+
+Notebook  PDF - PDF Version of the code of Jupyter Notebook <br />
+Jupyter Notebook.ipynb the code in ipynb  <br />
+Presentation  - Non-technical business presentation <br />
 ​​
 Conclusions:
 In this project, we implemented data analysis and predictive classified models to predict term deposit subscriptions at a Portuguese bank institution. With an F1 Score of 87% using Random Forest, the following business recommendations are:
